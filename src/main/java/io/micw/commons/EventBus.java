@@ -5,7 +5,7 @@ import java.util.List;
 interface EventBus {
 
     void register(Subscribable subscribable);
-    void dispatch(Event<?> event);
+    void dispatch(DomainEvent<?> domainEvent);
     List<Subscribable> getSubscribers();
 
 }

@@ -1,21 +1,26 @@
 package io.micw.commons;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 class EventBusImpl implements EventBus {
 
-    Map<Event, Subscribable> map;
+    private List<Subscribable> subscribers = new ArrayList<>();
 
+    @Override
     public void register(Subscribable subscribable) {
-
+        subscribers.add(subscribable);
     }
 
-    public void dispatch(Event<?> event) {
-
+    @Override
+    public void dispatch(DomainEvent<?> domainEvent) {
+        subscribers.stream()
+                .filter(s -> s.supports().contains(domainEvent.getClass()))
+                .forEach(s -> s.handle(domainEvent));
     }
 
+    @Override
     public List<Subscribable> getSubscribers() {
-        return null;
+        return new ArrayList<>(subscribers);
     }
 }

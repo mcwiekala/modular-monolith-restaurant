@@ -4,6 +4,7 @@ import java.util.Set;
 
 interface Subscribable {
 
-    void handle(Event<?> event);
+    void handle(DomainEvent<?> domainEvent);
+
     Set<Class<?>> supports();
 }

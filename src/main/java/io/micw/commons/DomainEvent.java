@@ -1,6 +1,6 @@
 package io.micw.commons;
 
-interface Event<T> {
+interface DomainEvent<T> {
 
     T getData();
 

@@ -1,13 +1,14 @@
 package io.micw.commons;
 
-class EventImpl implements Event<String> {
+class MessageEvent implements DomainEvent<String> {
 
     private String message;
 
-    public EventImpl(String message) {
+    public MessageEvent(String message) {
         this.message = message;
     }
 
+    @Override
     public String getData() {
         return message;
     }
