@@ -44,6 +44,7 @@ class EventBusTest extends Specification {
         eventBus.dispatch(domainEvent1)
 
         then:
+        eventBus.getSubscribers().size() == 3
         1 * subscriberMock1.handle(domainEvent1)
         1 * subscriberMock2.handle(domainEvent1)
         1 * subscriberMock3.handle(domainEvent1)
@@ -62,15 +63,20 @@ class EventBusTest extends Specification {
         eventBus.register(subscriberMock2)
         eventBus.dispatch(domainEvent1)
         eventBus.dispatch(domainEvent2)
+
         then:
+        eventBus.getSubscribers().size() == 2
         1 * subscriberMock1.handle(domainEvent1)
         1 * subscriberMock1.handle(domainEvent2)
         1 * subscriberMock2.handle(domainEvent1)
         1 * subscriberMock2.handle(domainEvent2)
+
         when:
         eventBus.unregister(subscriberMock2)
         eventBus.dispatch(domainEvent3)
+
         then:
+        eventBus.getSubscribers().size() == 1
         1 * subscriberMock1.handle(domainEvent3)
         0 * subscriberMock2.handle(domainEvent3)
     }
