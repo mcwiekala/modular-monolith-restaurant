@@ -2,13 +2,13 @@ package io.micw.commons
 
 import spock.lang.Specification
 
-class BusTest extends Specification {
+class EventBusTest extends Specification {
 
     DomainEvent<String> domainEvent1 = new MessageEvent("Hello World!");
     DomainEvent<String> domainEvent2 = new MessageEvent("It's...");
     DomainEvent<String> domainEvent3 = new MessageEvent("...me!");
 
-    def "Spock added"() {
+    def "check EventBus"() {
         given:
         Subscribable mock = Mock(Subscribable.class);
         mock.supports() >> new HashSet<>(Collections.singletonList(MessageEvent.class))
