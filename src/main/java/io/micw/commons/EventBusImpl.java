@@ -13,6 +13,11 @@ class EventBusImpl implements EventBus {
     }
 
     @Override
+    public void unregister(Subscribable subscribable) {
+        subscribers.remove(subscribable);
+    }
+
+    @Override
     public void dispatch(DomainEvent<?> domainEvent) {
         subscribers.stream()
                 .filter(s -> s.supports().contains(domainEvent.getClass()))
