@@ -1,4 +1,4 @@
-# Event Bus
+# Event Bus ![status](https://img.shields.io/badge/status-in%20progress-yellow)
 
 This project is an implementation of Event Bus architectural pattern. Event Bus is used in distributed asynchronous architecture to create highly scalable reactive applications. It provides loosely coupling between different components.
 
