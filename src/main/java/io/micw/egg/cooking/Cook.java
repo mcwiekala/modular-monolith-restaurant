@@ -13,7 +13,7 @@ class Cook {
     void makeMeal(EggType eggType) {
         log.info("Cooking: " + eggType + " egg!");
         cook();
-        EggIsDoneEvent event = new EggIsDoneEvent(UUID.randomUUID(), eggType);
+        EggIsDoneEvent event = new EggIsDoneEvent(eggType);
         cookingEventPublisher.publish(event);
     }
 

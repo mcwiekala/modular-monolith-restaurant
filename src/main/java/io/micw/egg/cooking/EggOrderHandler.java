@@ -24,7 +24,7 @@ class EggOrderHandler implements Subscribable<EggWasOrderedEvent> {
         orderRepository.saveOrder(new CookOrder(domainEvent.getEventId(), domainEvent.getEggType()));
         log.info("We get the order!");
         log.info("Now we can cook!");
-        cook.makeMeal();
+        cook.makeMeal(domainEvent.getEggType());
         log.info("done!");
     }
 

@@ -7,9 +7,13 @@ import lombok.Value;
 import java.util.UUID;
 
 @Value
-class EggIsDoneEvent implements DomainEvent {
+public class EggIsDoneEvent implements DomainEvent {
 
-    private UUID eventId;
-    private EggType eggType;
+    UUID eventId;
+    EggType eggType;
 
+    public EggIsDoneEvent(EggType eggType) {
+        this.eggType = eggType;
+        this.eventId = UUID.randomUUID();
+    }
 }
