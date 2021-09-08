@@ -1,11 +1,11 @@
 package io.micw.egg.restaurant;
 
 
-import io.micw.egg.commons.EggType;
 import lombok.Value;
 
 import java.util.UUID;
 
+// wrapper type for person
 @Value
 class Customer {
 

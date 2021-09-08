@@ -4,17 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-class InMemoryCustomerRepository implements MealRepository {
+class InMemoryCustomerRepository implements CustomerRepository {
 
-    Map<UUID, Meal> map = new HashMap();
+    Map<UUID, Customer> map = new HashMap();
 
     @Override
-    public void saveMeal(Meal meal) {
-        map.put(meal.getOrderId(), meal);
+    public void saveCustomer(Customer Customer) {
+        map.put(Customer.getUuid(), Customer);
     }
 
     @Override
-    public Meal getMeal(UUID orderId) {
-        return map.get(orderId);
+    public Customer getCustomer(UUID customerId) {
+        return map.get(customerId);
     }
 }

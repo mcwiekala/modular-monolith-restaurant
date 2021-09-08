@@ -12,12 +12,8 @@ class Person {
 
     String name;
 
-    Order makeOrder(EggType eggType){
-        return new Order(eggType);
-    }
-
-    void callWaiter(Waiter waiter, EggType eggType){
-        waiter.getOrder(this, makeOrder(eggType));
+    Customer callWaiter(Waiter waiter, EggType mealWish){
+        return waiter.createOrder(this, mealWish);
     }
 
 }

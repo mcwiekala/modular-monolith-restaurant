@@ -11,7 +11,7 @@ class MealEventHandlerTest extends Specification {
     MealRepository mealRepository = new InMemoryMealRepository();
     MealEventHandler mealEventHandler = new MealEventHandler(mealRepository)
 
-    def "check events"() {
+    def "check evnts"() {
         given:
         MealWasDeliveredEvent event = new MealWasDeliveredEvent(EggType.SCRAMBLED)
         eventBus.register(mealEventHandler);
