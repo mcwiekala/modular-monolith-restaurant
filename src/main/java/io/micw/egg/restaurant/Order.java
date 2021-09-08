@@ -9,10 +9,12 @@ import java.util.UUID;
 class Order {
 
     UUID uuid;
+    Customer customer;
     EggType eggType;
 
-    public Order(EggType mealWish) {
+    public Order(Customer customer, EggType eggType) {
         this.uuid = UUID.randomUUID();
-        this.eggType = mealWish;
+        this.customer = customer;
+        this.eggType = eggType;
     }
 }

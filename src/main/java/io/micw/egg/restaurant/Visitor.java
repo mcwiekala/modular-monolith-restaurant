@@ -8,12 +8,12 @@ import lombok.Value;
 // He might be a client or not. When he make a order, he became a client.
 @Value
 @AllArgsConstructor
-class Person {
+class Visitor {
 
     String name;
 
-    Customer callWaiter(Waiter waiter, EggType mealWish){
-        return waiter.createOrder(this, mealWish);
+    Order callWaiter(Waiter waiter, EggType mealWish){
+        return waiter.receiveWishFromPerson(this, mealWish);
     }
 
 }

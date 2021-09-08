@@ -10,6 +10,7 @@ class MealEventHandler implements Subscribable<MealWasDeliveredEvent> {
 
     public static final HashSet<Class<?>> SUPPORTED_EVENTS = Sets.newHashSet(MealWasDeliveredEvent.class);
     MealRepository mealRepository;
+    Waiter waiter;
 
     public MealEventHandler(MealRepository orderRepository) {
         this.mealRepository = orderRepository;
@@ -19,7 +20,7 @@ class MealEventHandler implements Subscribable<MealWasDeliveredEvent> {
     public void handle(MealWasDeliveredEvent domainEvent) {
         Meal meal = new Meal(domainEvent.getEventId(), domainEvent.getEggType());
         mealRepository.saveMeal(meal);
-
+        waiter.deliverMeal(meal);
     }
 
     @Override

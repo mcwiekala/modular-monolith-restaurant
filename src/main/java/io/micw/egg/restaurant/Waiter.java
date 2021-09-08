@@ -2,23 +2,33 @@ package io.micw.egg.restaurant;
 
 import io.micw.egg.commons.EggType;
 
+import java.util.UUID;
+
 class Waiter {
 
     RestaurantEventPublisher restaurantEventPublisher;
-    CustomerRepository customerRepository;
+    OrderRepository orderRepository;
 
-    public Waiter(RestaurantEventPublisher restaurantEventPublisher, CustomerRepository customerRepository) {
+    public Waiter(RestaurantEventPublisher restaurantEventPublisher, OrderRepository orderRepository) {
         this.restaurantEventPublisher = restaurantEventPublisher;
-        this.customerRepository = customerRepository;
+        this.orderRepository = orderRepository;
     }
 
-    Customer createOrder(Person person, EggType eggType) {
-        Order order = new Order(eggType);
-        Customer customer = new Customer(person, order, this);
-        customerRepository.saveCustomer(customer);
+    Order receiveWishFromPerson(Visitor visitor, EggType eggType) {
+        Customer customer = new Customer(visitor, this);
+        Order order = new Order(customer, eggType);
+        orderRepository.saveOrder(order);
         EggWasOrderedEvent eggWasOrderedEvent = new EggWasOrderedEvent(eggType);
         restaurantEventPublisher.publish(eggWasOrderedEvent);
-        return customer;
+        return order;
     }
 
+    public void deliverMeal(Meal meal) {
+
+        UUID orderId = meal.getOrderId();
+        Order order = orderRepository.getOrder(orderId);
+
+        order.getCustomer().receiveMeal(meal);
+
+    }
 }
