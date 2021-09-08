@@ -1,4 +1,4 @@
-package io.micw.commons;
+package io.micw.egg.commons;
 
 import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
@@ -18,10 +18,10 @@ public class Subscriber implements Subscribable{
     }
 
     @Override
-    public void handle(DomainEvent<?> domainEvent) {
+    public void handle(DomainEvent domainEvent) {
       log.info("#######################################");
       log.info(name + " received an event!");
-      log.info("Message: " + domainEvent.getData());
+//      log.info("Message: " + domainEvent.getData());
       log.info("#######################################");
     }
 

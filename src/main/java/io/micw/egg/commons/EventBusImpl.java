@@ -1,9 +1,9 @@
-package io.micw.commons;
+package io.micw.egg.commons;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class EventBusImpl implements EventBus {
+public class EventBusImpl implements EventBus {
 
     private List<Subscribable> subscribers = new ArrayList<>();
 
@@ -18,7 +18,7 @@ class EventBusImpl implements EventBus {
     }
 
     @Override
-    public void dispatch(DomainEvent<?> domainEvent) {
+    public void dispatch(DomainEvent domainEvent) {
         subscribers.stream()
                 .filter(s -> s.supports().contains(domainEvent.getClass()))
                 .forEach(s -> s.handle(domainEvent));

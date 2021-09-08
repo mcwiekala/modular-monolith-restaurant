@@ -1,13 +1,18 @@
-package io.micw.commons
+package io.micw.egg.commons
 
+import io.micw.egg.commons.DomainEvent
+import io.micw.egg.commons.EventBus
+import io.micw.egg.commons.EventBusImpl
+import io.micw.egg.commons.MessageEvent
+import io.micw.egg.commons.Subscribable
 import spock.lang.Specification
 
 class EventBusTest extends Specification {
 
-    EventBus eventBus = new EventBusImpl();
-    DomainEvent<String> domainEvent1 = new MessageEvent("Hello World!");
-    DomainEvent<String> domainEvent2 = new MessageEvent("It's...");
-    DomainEvent<String> domainEvent3 = new MessageEvent("...me!");
+    EventBus eventBus = new EventBusImpl()
+    DomainEvent domainEvent1 = new MessageEvent("Hello World!");
+    DomainEvent domainEvent2 = new MessageEvent("It's...");
+    DomainEvent domainEvent3 = new MessageEvent("...me!");
 
     def "check dispatch many events"() {
         given:
