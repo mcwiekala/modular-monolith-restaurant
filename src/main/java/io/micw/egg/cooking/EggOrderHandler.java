@@ -15,8 +15,9 @@ class EggOrderHandler implements Subscribable<EggWasOrderedEvent> {
     OrderRepository orderRepository;
     Cook cook;
 
-    public EggOrderHandler(OrderRepository orderRepository) {
+    public EggOrderHandler(OrderRepository orderRepository, Cook cook) {
         this.orderRepository = orderRepository;
+        this.cook = cook;
     }
 
     @Override

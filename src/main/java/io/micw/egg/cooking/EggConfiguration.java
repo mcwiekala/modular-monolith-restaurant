@@ -11,9 +11,9 @@ public class EggConfiguration {
         return new InMemoryOrderRepository();
     }
 
-    @Bean
-    EggOrderHandler eggOrderHandler(OrderRepository orderRepository){
-        return new EggOrderHandler(orderRepository);
+//    @Bean
+    EggOrderHandler eggOrderHandler(OrderRepository orderRepository, Cook cook){
+        return new EggOrderHandler(orderRepository, cook);
     }
 
 }

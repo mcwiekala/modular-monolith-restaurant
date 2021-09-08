@@ -9,8 +9,12 @@ import spock.lang.Specification
 class EggOrderHandlerTest extends Specification {
 
     EventBus eventBus = new EventBusImpl();
+
     OrderRepository orderRepository = new InMemoryOrderRepository();
-    EggOrderHandler eggOrderHandler = new EggOrderHandler(orderRepository)
+    CookingEventPublisher cookingEventPublisher = new CookingEventPublisher(eventBus)
+    Cook cook = new Cook(cookingEventPublisher)
+
+    EggOrderHandler eggOrderHandler = new EggOrderHandler(orderRepository, cook)
 
     def "check events"() {
         given:

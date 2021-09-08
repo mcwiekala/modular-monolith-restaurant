@@ -3,12 +3,14 @@ package io.micw.egg.cooking;
 import io.micw.egg.commons.EggType;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.UUID;
-
 @Slf4j
 class Cook {
 
     CookingEventPublisher cookingEventPublisher;
+
+    public Cook(CookingEventPublisher cookingEventPublisher) {
+        this.cookingEventPublisher = cookingEventPublisher;
+    }
 
     void makeMeal(EggType eggType) {
         log.info("Cooking: " + eggType + " egg!");

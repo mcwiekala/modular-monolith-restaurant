@@ -17,7 +17,9 @@ class MealEventHandler implements Subscribable<MealWasDeliveredEvent> {
 
     @Override
     public void handle(MealWasDeliveredEvent domainEvent) {
-        mealRepository.saveMeal(new Meal(domainEvent.getEventId(), domainEvent.getEggType()));
+        Meal meal = new Meal(domainEvent.getEventId(), domainEvent.getEggType());
+        mealRepository.saveMeal(meal);
+
     }
 
     @Override
