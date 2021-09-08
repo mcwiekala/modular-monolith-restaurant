@@ -1,21 +1,19 @@
 package io.micw.egg.restaurant;
 
 
-import io.micw.egg.commons.EventBus;
-import io.micw.egg.commons.EventBusImpl;
 import io.micw.egg.commons.EggType;
 
 class Customer {
 
-    EventBus eventBus;
+    RestaurantEventPublisher restaurantEventPublisher;
 
-    public Customer() {
-        this.eventBus = new EventBusImpl();
+    public Customer(RestaurantEventPublisher restaurantEventPublisher) {
+        this.restaurantEventPublisher = restaurantEventPublisher;
     }
 
     void orderEgg(EggType eggType) {
         EggWasOrderedEvent eggWasOrderedEvent = new EggWasOrderedEvent(eggType);
-        eventBus.dispatch(eggWasOrderedEvent);
+        restaurantEventPublisher.publish(eggWasOrderedEvent);
     }
 
 }
