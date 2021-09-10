@@ -12,7 +12,7 @@ class Visitor {
 
     String name;
 
-    Order callWaiter(Waiter waiter, EggType mealWish){
+    Order callWaiter(WaiterImpl waiter, EggType mealWish){
         return waiter.receiveWishFromPerson(this, mealWish);
     }
 

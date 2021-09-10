@@ -1,20 +1,27 @@
 package io.micw.eggrestaurant.restaurant;
 
 import io.micw.eggrestaurant.commons.EggType;
+import lombok.Data;
 import lombok.Value;
 
 import java.util.UUID;
 
-@Value
+@Data
 class Order {
 
-    UUID uuid;
-    Customer customer;
-    EggType eggType;
+    private UUID uuid = UUID.randomUUID();
+    private UUID mealId;
+    private UUID customerId;
+    private EggType eggType;
 
-    public Order(Customer customer, EggType eggType) {
-        this.uuid = UUID.randomUUID();
-        this.customer = customer;
+    public Order(UUID mealId, UUID customerId, EggType eggType) {
+        this.mealId = mealId;
+        this.customerId = customerId;
+        this.eggType = eggType;
+    }
+
+    public Order(UUID customerId, EggType eggType) {
+        this.customerId = customerId;
         this.eggType = eggType;
     }
 }

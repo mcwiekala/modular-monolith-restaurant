@@ -9,17 +9,16 @@ import java.util.UUID;
 
 @Slf4j
 @Value
-@AllArgsConstructor
+//@AllArgsConstructor
 class Meal {
 
-    UUID mealId;
+    UUID mealId = UUID.randomUUID();
     UUID customerOrderId;
     EggType eggType;
 
     public Meal(UUID customerOrderId, EggType eggType) {
-//        TODO: id coupling?
-        this.mealId = customerOrderId;
         this.customerOrderId = customerOrderId;
         this.eggType = eggType;
     }
+
 }

@@ -8,13 +8,11 @@ import java.util.UUID;
 @Value
 class CookOrder {
 
-    UUID cookOrderId;
+    UUID cookOrderId = UUID.randomUUID();
     UUID clientOrderId;
     EggType eggType;
 
     public CookOrder(UUID clientOrderId, EggType eggType) {
-//        TODO: id coupling?!
-        this.cookOrderId = clientOrderId;
         this.clientOrderId = clientOrderId;
         this.eggType = eggType;
     }

@@ -7,26 +7,29 @@ import spock.lang.Specification
 
 class MealEventHandlerTest extends Specification {
 
+    public static final EggType eggType = EggType.SCRAMBLED
     EventBus eventBus = new EventBusImpl();
     MealRepository mealRepository = new InMemoryMealRepository();
 
     RestaurantEventPublisher restaurantEventPublisher = new RestaurantEventPublisher(eventBus)
     OrderRepository orderRepository = new InMemoryOrderRepository()
-    Waiter waiter = new Waiter(restaurantEventPublisher, orderRepository)
+    Waiter waiter = Mock(Waiter.class)
 
-    MealEventHandler mealEventHandler = new MealEventHandler(mealRepository, waiter)
+    MealEventHandler mealEventHandler = new MealEventHandler(orderRepository, mealRepository, waiter)
 
     def "check events"() {
         given:
-        UUID customerOrderId = UUID.randomUUID();
-        MealWasDeliveredEvent event = new MealWasDeliveredEvent(customerOrderId, EggType.SCRAMBLED)
+        waiter.deliverMeal(_) >> true
+        UUID customerId = UUID.randomUUID()
+        Order order = new Order(customerId, eggType)
+        orderRepository.saveOrder(order)
+        MealWasDeliveredEvent event = new MealWasDeliveredEvent(order.getUuid(), eggType)
         eventBus.register(mealEventHandler);
         when:
         eventBus.dispatch(event)
         then:
-//        TODO: id coupling!
-        Meal meal = mealRepository.getMeal(customerOrderId)
-        meal.eggType == EggType.SCRAMBLED
+        Meal meal = mealRepository.getMeal(order.mealId)
+        meal != null
     }
 
 }

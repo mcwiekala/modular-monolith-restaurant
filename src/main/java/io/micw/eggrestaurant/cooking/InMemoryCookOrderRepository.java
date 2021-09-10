@@ -14,7 +14,7 @@ class InMemoryCookOrderRepository implements CookOrderRepository {
     }
 
     @Override
-    public CookOrder getOrder(UUID orderId) {
-        return map.get(orderId);
+    public CookOrder getCookOrder(UUID cookOrderId) {
+        return map.get(cookOrderId);
     }
 }

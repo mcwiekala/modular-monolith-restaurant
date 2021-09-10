@@ -13,9 +13,9 @@ class Customer {
 
     UUID uuid;
     Visitor visitor;
-    Waiter waiter;
+    WaiterImpl waiter;
 
-    public Customer(Visitor visitor, Waiter waiter) {
+    public Customer(Visitor visitor, WaiterImpl waiter) {
         this.uuid = UUID.randomUUID();
         this.visitor = visitor;
         this.waiter = waiter;

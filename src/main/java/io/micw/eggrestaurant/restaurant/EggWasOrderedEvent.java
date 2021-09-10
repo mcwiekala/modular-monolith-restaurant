@@ -9,12 +9,11 @@ import java.util.UUID;
 @Value
 public class EggWasOrderedEvent implements DomainEvent {
 
-    UUID eventId;
+    UUID eventId = UUID.randomUUID();;
     UUID customerOrderId;
     EggType eggType;
 
     public EggWasOrderedEvent(UUID customerOrderId, EggType eggType) {
-        this.eventId = UUID.randomUUID();
         this.customerOrderId = customerOrderId;
         this.eggType = eggType;
     }

@@ -5,7 +5,7 @@ import io.micw.eggrestaurant.commons.EventBus
 import io.micw.eggrestaurant.commons.EventBusImpl
 import spock.lang.Specification
 
-class WaiterTest extends Specification {
+class WaiterImplTest extends Specification {
 
     EventBus eventBus = new EventBusImpl();
     MealRepository mealRepository = new InMemoryMealRepository();
@@ -14,7 +14,7 @@ class WaiterTest extends Specification {
     RestaurantEventPublisher restaurantEventPublisher = new RestaurantEventPublisher(eventBus)
     OrderRepository orderRepository = new InMemoryOrderRepository()
 
-    Waiter waiter = new Waiter(restaurantEventPublisher, orderRepository)
+    Waiter waiter = new WaiterImpl(restaurantEventPublisher, orderRepository)
 
     def "create the order"() {
         given:
