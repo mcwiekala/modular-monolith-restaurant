@@ -5,7 +5,7 @@ import io.micw.eggrestaurant.commons.EggType;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 
-// He might be a client or not. When he make a order, he became a client.
+// He might be a customer or not. When he make a order, he became a customer.
 @Value
 @AllArgsConstructor
 class Visitor {

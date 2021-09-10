@@ -9,11 +9,11 @@ import java.util.UUID;
 class CookOrder {
 
     UUID cookOrderId = UUID.randomUUID();
-    UUID clientOrderId;
+    UUID customerOrderId;
     EggType eggType;
 
-    public CookOrder(UUID clientOrderId, EggType eggType) {
-        this.clientOrderId = clientOrderId;
+    public CookOrder(UUID customerOrderId, EggType eggType) {
+        this.customerOrderId = customerOrderId;
         this.eggType = eggType;
     }
 }

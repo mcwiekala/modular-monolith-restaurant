@@ -17,7 +17,7 @@ class WaiterImpl implements Waiter {
 
     public Order receiveWishFromPerson(Visitor visitor, EggType eggType) {
         Customer customer = new Customer(visitor, this);
-        Order order = new Order(customer.getUuid(), eggType);
+        Order order = new Order(customer.getCustomerId(), eggType);
         orderRepository.saveOrder(order);
         EggWasOrderedEvent eggWasOrderedEvent = new EggWasOrderedEvent(order.getUuid(), eggType);
         restaurantEventPublisher.publish(eggWasOrderedEvent);
@@ -28,7 +28,7 @@ class WaiterImpl implements Waiter {
         //        TODO: get order
         UUID orderId = meal.getCustomerOrderId();
         Order order = orderRepository.getOrder(orderId);
-//        Customer customer = order.getCustomer();
+//        Customer customer = customer order.getCustomerId();
 //        customer.receiveMeal(meal);
         return true;
     }

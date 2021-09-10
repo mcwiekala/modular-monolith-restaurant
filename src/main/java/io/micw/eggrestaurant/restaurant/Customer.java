@@ -11,12 +11,11 @@ import java.util.UUID;
 @Slf4j
 class Customer {
 
-    UUID uuid;
+    UUID customerId = UUID.randomUUID();
     Visitor visitor;
     WaiterImpl waiter;
 
     public Customer(Visitor visitor, WaiterImpl waiter) {
-        this.uuid = UUID.randomUUID();
         this.visitor = visitor;
         this.waiter = waiter;
     }

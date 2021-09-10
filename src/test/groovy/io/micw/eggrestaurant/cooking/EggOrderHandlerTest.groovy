@@ -18,14 +18,14 @@ class EggOrderHandlerTest extends Specification {
 
     def "check events"() {
         given:
-        UUID clientOrderId = UUID.randomUUID();
-        EggWasOrderedEvent event = new EggWasOrderedEvent(clientOrderId, EggType.SCRAMBLED)
+        UUID customerOrderId = UUID.randomUUID();
+        EggWasOrderedEvent event = new EggWasOrderedEvent(customerOrderId, EggType.SCRAMBLED)
         eventBus.register(eggOrderHandler);
         when:
         eventBus.dispatch(event)
         then:
-        CookOrder cookOrder = cookOrderRepository.map.values().stream().filter({ cookOrder -> cookOrder.getClientOrderId() == clientOrderId }).findAny().orElseThrow()
-        cookOrder.clientOrderId == clientOrderId
+        CookOrder cookOrder = cookOrderRepository.map.values().stream().filter({ cookOrder -> cookOrder.getCustomerOrderId() == customerOrderId }).findAny().orElseThrow()
+        cookOrder.customerOrderId == customerOrderId
         cookOrder.eggType == EggType.SCRAMBLED
     }
 
