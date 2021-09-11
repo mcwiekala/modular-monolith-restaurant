@@ -1,20 +1,29 @@
 package io.micw.eggrestaurant.cooking
 
-import io.micw.eggrestaurant.commons.EventBus
-import io.micw.eggrestaurant.commons.EventBusImpl
 import io.micw.eggrestaurant.commons.EggType
+import io.micw.eggrestaurant.commons.EventBus
 import io.micw.eggrestaurant.restaurant.EggWasOrderedEvent
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
+@SpringBootTest(classes = CookingConfiguration.class)
 class EggOrderHandlerTest extends Specification {
 
-    EventBus eventBus = new EventBusImpl();
+    @Autowired
+    EventBus eventBus;
 
-    CookOrderRepository cookOrderRepository = new InMemoryCookOrderRepository();
-    CookingEventPublisher cookingEventPublisher = new CookingEventPublisher(eventBus)
-    Cook cook = new Cook(cookingEventPublisher)
+    @Autowired
+    CookOrderRepository cookOrderRepository
 
-    EggOrderHandler eggOrderHandler = new EggOrderHandler(cookOrderRepository, cook)
+    @Autowired
+    CookingEventPublisher cookingEventPublisher
+
+    @Autowired
+    Cook cook
+
+    @Autowired
+    EggOrderHandler eggOrderHandler
 
     def "check events"() {
         given:

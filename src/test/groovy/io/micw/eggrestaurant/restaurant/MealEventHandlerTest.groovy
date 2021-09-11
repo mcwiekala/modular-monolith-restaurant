@@ -2,29 +2,46 @@ package io.micw.eggrestaurant.restaurant
 
 import io.micw.eggrestaurant.commons.EggType
 import io.micw.eggrestaurant.commons.EventBus
-import io.micw.eggrestaurant.commons.EventBusImpl
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
+@SpringBootTest(classes = RestaurantConfiguration.class)
 class MealEventHandlerTest extends Specification {
 
     public static final EggType eggType = EggType.SCRAMBLED
-    EventBus eventBus = new EventBusImpl();
-    MealRepository mealRepository = new InMemoryMealRepository();
 
-    RestaurantEventPublisher restaurantEventPublisher = new RestaurantEventPublisher(eventBus)
-    OrderRepository orderRepository = new InMemoryOrderRepository()
+    @Autowired
+    EventBus eventBus
+
+    @Autowired
+    MealRepository mealRepository
+
+    @Autowired
+    RestaurantEventPublisher restaurantEventPublisher
+
+    @Autowired
+    OrderRepository orderRepository
+
+    @Autowired
+    MealEventHandler mealEventHandler
+
+    @Autowired
+    CustomerRepository customerRepository
+
     Waiter waiter = Mock(Waiter.class)
-
-    MealEventHandler mealEventHandler = new MealEventHandler(orderRepository, mealRepository, waiter)
+    Customer customer = Mock(Customer.class)
 
     def "check events"() {
         given:
         waiter.deliverMeal(_) >> true
-        UUID customerId = UUID.randomUUID()
-        Order order = new Order(customerId, eggType)
+        customer.getIsInLocal() >> true
+
+        customerRepository.saveCustomer(customer)
+        Order order = new Order(customer.customerId, eggType)
         orderRepository.saveOrder(order)
         MealWasDeliveredEvent event = new MealWasDeliveredEvent(order.getOrderId(), eggType)
-        eventBus.register(mealEventHandler);
+        eventBus.register(mealEventHandler)
         when:
         eventBus.dispatch(event)
         then:

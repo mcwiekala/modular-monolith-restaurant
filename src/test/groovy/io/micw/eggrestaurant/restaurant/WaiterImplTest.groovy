@@ -3,18 +3,30 @@ package io.micw.eggrestaurant.restaurant
 import io.micw.eggrestaurant.commons.EggType
 import io.micw.eggrestaurant.commons.EventBus
 import io.micw.eggrestaurant.commons.EventBusImpl
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
+@SpringBootTest(classes = RestaurantConfiguration.class)
 class WaiterImplTest extends Specification {
 
-    EventBus eventBus = new EventBusImpl();
-    MealRepository mealRepository = new InMemoryMealRepository();
-//    MealEventHandler mealEventHandler = new MealEventHandler(mealRepository)
+    @Autowired
+    EventBus eventBus
 
-    RestaurantEventPublisher restaurantEventPublisher = new RestaurantEventPublisher(eventBus)
-    OrderRepository orderRepository = new InMemoryOrderRepository()
-    CustomerRepository customerRepository = new InMemoryCustomerRepository()
-    Waiter waiter = new WaiterImpl(restaurantEventPublisher, orderRepository, customerRepository)
+    @Autowired
+    MealRepository mealRepository
+
+    @Autowired
+    RestaurantEventPublisher restaurantEventPublisher
+
+    @Autowired
+    OrderRepository orderRepository
+
+    @Autowired
+    CustomerRepository customerRepository
+
+    @Autowired
+    Waiter waiter
 
     def "create the order"() {
         given:
