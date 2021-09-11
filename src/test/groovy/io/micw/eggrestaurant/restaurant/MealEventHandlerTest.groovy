@@ -23,7 +23,7 @@ class MealEventHandlerTest extends Specification {
         UUID customerId = UUID.randomUUID()
         Order order = new Order(customerId, eggType)
         orderRepository.saveOrder(order)
-        MealWasDeliveredEvent event = new MealWasDeliveredEvent(order.getUuid(), eggType)
+        MealWasDeliveredEvent event = new MealWasDeliveredEvent(order.getOrderId(), eggType)
         eventBus.register(mealEventHandler);
         when:
         eventBus.dispatch(event)

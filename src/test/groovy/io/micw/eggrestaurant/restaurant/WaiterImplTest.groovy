@@ -13,8 +13,8 @@ class WaiterImplTest extends Specification {
 
     RestaurantEventPublisher restaurantEventPublisher = new RestaurantEventPublisher(eventBus)
     OrderRepository orderRepository = new InMemoryOrderRepository()
-
-    Waiter waiter = new WaiterImpl(restaurantEventPublisher, orderRepository)
+    CustomerRepository customerRepository = new InMemoryCustomerRepository()
+    Waiter waiter = new WaiterImpl(restaurantEventPublisher, orderRepository, customerRepository)
 
     def "create the order"() {
         given:
@@ -24,7 +24,26 @@ class WaiterImplTest extends Specification {
         Order orderFromMike = mike.callWaiter(waiter, EggType.SUNNY_SIDE_UP)
 
         then:
-        def order = orderRepository.getOrder(orderFromMike.getUuid())
+        def order = orderRepository.getOrder(orderFromMike.getOrderId())
         EggType.SUNNY_SIDE_UP == order.eggType
+    }
+
+    def "deliver meal to customer"() {
+        given:
+        EggType eggType = EggType.FLIPPED
+        Visitor mike = new Visitor("Mike Smith")
+        Customer mikeCustomer = new Customer(mike, waiter)
+        Order mikesOrder = new Order(mikeCustomer.customerId, eggType)
+        Meal mikesMeal = new Meal(mikesOrder.orderId, eggType)
+
+        mikesOrder.setMealId(mikesMeal.mealId)
+        orderRepository.saveOrder(mikesOrder)
+        customerRepository.saveCustomer(mikeCustomer)
+
+        when:
+        Boolean result = waiter.deliverMeal(mikesMeal)
+
+        then:
+        result
     }
 }

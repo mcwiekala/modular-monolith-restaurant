@@ -9,7 +9,7 @@ import java.util.UUID;
 @Data
 class Order {
 
-    private UUID uuid = UUID.randomUUID();
+    private UUID orderId = UUID.randomUUID();
     private UUID mealId;
     private UUID customerId;
     private EggType eggType;

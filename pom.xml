@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>io.micw</groupId>
-    <artifactId>domainEvent-bus</artifactId>
+    <artifactId>egg-restaurant</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Event-Bus</name>
-    <description>Simple project with event bud and onion architecture</description>
+    <name>Egg Restaurant</name>
+    <description>Simple project with event bus and onion architecture</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

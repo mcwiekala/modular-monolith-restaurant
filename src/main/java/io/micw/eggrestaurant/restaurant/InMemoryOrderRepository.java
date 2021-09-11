@@ -10,7 +10,7 @@ class InMemoryOrderRepository implements OrderRepository {
 
     @Override
     public void saveOrder(Order order) {
-        map.put(order.getUuid(), order);
+        map.put(order.getOrderId(), order);
     }
 
     @Override

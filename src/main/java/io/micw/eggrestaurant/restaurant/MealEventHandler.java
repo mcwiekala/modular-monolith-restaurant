@@ -10,6 +10,8 @@ class MealEventHandler implements Subscribable<MealWasDeliveredEvent> {
     public static final Set<Class> SUPPORTED_EVENTS = Sets.newHashSet(MealWasDeliveredEvent.class);
     MealRepository mealRepository;
     OrderRepository orderRepository;
+
+    // TODO: cron to fetch meal instead?
     Waiter waiter;
 
     public MealEventHandler(OrderRepository orderRepository, MealRepository mealRepository, Waiter waiter) {
