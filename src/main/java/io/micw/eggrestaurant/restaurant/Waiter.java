@@ -2,10 +2,7 @@ package io.micw.eggrestaurant.restaurant;
 
 import io.micw.eggrestaurant.commons.EggType;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -14,7 +11,7 @@ class Waiter {
     RestaurantEventPublisher restaurantEventPublisher;
     OrderRepository orderRepository;
     CustomerRepository customerRepository;
-    List<Customer> customerWhoEat = new ArrayList<>();
+    CustomerNotificationService customerNotificationService;
 
     public Waiter(RestaurantEventPublisher restaurantEventPublisher, OrderRepository orderRepository, CustomerRepository customerRepository) {
         this.restaurantEventPublisher = restaurantEventPublisher;
@@ -25,6 +22,7 @@ class Waiter {
     public Order receiveWishFromPerson(Visitor visitor, EggType eggType) {
         Customer customer = new Customer(visitor, this); //TODO: Spring is needed
         Order order = new Order(customer.getCustomerId(), eggType);
+        customer.setOrderId(order.getOrderId());
         orderRepository.saveOrder(order);
         EggWasOrderedEvent eggWasOrderedEvent = new EggWasOrderedEvent(order.getOrderId(), eggType);
         restaurantEventPublisher.publish(eggWasOrderedEvent);
@@ -32,7 +30,6 @@ class Waiter {
     }
 
     public boolean deliverMeal(Meal meal) {
-        //        TODO: get order
         UUID orderId = meal.getCustomerOrderId();
 
         Order order = orderRepository.getOrder(orderId);
@@ -41,7 +38,7 @@ class Waiter {
         if (customer.getIsInLocal()) {
             log.info("Client received food.");
             customer.receiveMeal(meal);
-            customerWhoEat.add(customer);
+            customerNotificationService.addEatingCustomer(customer);
             return true;
         } else {
             log.info("Client has gone away!");
@@ -49,18 +46,15 @@ class Waiter {
         }
     }
 
-    @Scheduled(fixedRate = 3000L)
-    void checkCustomer() {
-        for (Customer customer : customerWhoEat) {
-            if (customerHasEatenAndGoAway(customer)) {
-                
-            }
+    public void cleanTable(UUID orderId) {
+
+        log.info("Waiter is cleaning table with order ID: " + orderId);
+        log.info("clean... clean...");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            log.error("Error", e);
         }
+
     }
-
-    private boolean customerHasEatenAndGoAway(Customer c) {
-        return c.getIsFoodDelivered() && !c.getIsInLocal();
-    }
-
-
 }

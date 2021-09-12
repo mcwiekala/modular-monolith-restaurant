@@ -1,5 +1,6 @@
 package io.micw.eggrestaurant.restaurant;
 
+import io.micw.eggrestaurant.commons.DomainEvent;
 import io.micw.eggrestaurant.commons.EventBus;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,7 +13,7 @@ class RestaurantEventPublisher {
         this.eventBus = eventBus;
     }
 
-    void publish(EggWasOrderedEvent event) {
+    void publish(DomainEvent event) {
         eventBus.dispatch(event);
     }
 }
