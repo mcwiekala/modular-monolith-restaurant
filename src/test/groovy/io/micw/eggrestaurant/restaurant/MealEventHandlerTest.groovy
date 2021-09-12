@@ -18,9 +18,6 @@ class MealEventHandlerTest extends Specification {
     MealRepository mealRepository
 
     @Autowired
-    RestaurantEventPublisher restaurantEventPublisher
-
-    @Autowired
     OrderRepository orderRepository
 
     @Autowired

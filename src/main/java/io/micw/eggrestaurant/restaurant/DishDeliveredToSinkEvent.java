@@ -6,7 +6,7 @@ import lombok.Value;
 import java.util.UUID;
 
 @Value
-class DishDeliveredToSinkEvent implements DomainEvent {
+public class DishDeliveredToSinkEvent implements DomainEvent {
 
     UUID eventId = UUID.randomUUID();
     UUID customerOrderId;

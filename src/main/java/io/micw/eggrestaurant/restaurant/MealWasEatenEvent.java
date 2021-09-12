@@ -8,7 +8,7 @@ import lombok.Value;
 import java.util.UUID;
 
 @Value
-public class MealWasEatenEvent implements DomainEvent {
+class MealWasEatenEvent implements DomainEvent {
 
     UUID eventId = UUID.randomUUID();
     UUID customerOrderId;

@@ -6,7 +6,7 @@ import io.micw.eggrestaurant.commons.Subscribable;
 
 import java.util.Set;
 
-class EatenMealEventHandler implements Subscribable<MealWasEatenEvent> {
+public class MealWasEatenEventHandler implements Subscribable<MealWasEatenEvent> {
 
     public static final Set<Class> SUPPORTED_EVENTS = Sets.newHashSet(MealWasEatenEvent.class);
     EventBus eventBus;
