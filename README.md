@@ -12,6 +12,8 @@ Onion Architecture is based on 3 layers:
 * application - frameworks, services, technology specific code
 * infrastructure - other systems like DB, JMS, REST API
 
+[Check Jeffrey Palermo blog to learn more about Onion Architecture!](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
+
 ![schema](docs/CleanArchitecture.jpg)
 
 [source](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
