@@ -12,7 +12,7 @@ Onion Architecture is based on 3 layers:
 * application - frameworks, services, technology specific code
 * infrastructure - other systems like DB, JMS, REST API
 
-[Check Jeffrey Palermo blog to learn more about Onion Architecture!](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
+[Check Jeffrey Palermo's blog to learn more about Onion Architecture!](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
 
 ![schema](docs/CleanArchitecture.jpg)
 
@@ -58,3 +58,6 @@ Domain is based on 3 subdomains since egg means something else for different act
 * for dishwasher it means nothing else but ugly slush to wash...
 
 ![schema](docs/contexts.png)
+
+#### Inspiration
+Ispiration based on Wade Waldron's talk ["Domain Driven Design and Onion Architecture in Scala"](https://github.com/WadeWaldron/scaladays2016/blob/master/presentation/scaladays2016.md) on Scala Days 2016
