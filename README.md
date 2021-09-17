@@ -1,4 +1,5 @@
-# Egg Restaurant  as a Modular Monolith ![status](https://img.shields.io/badge/status-in%20progress-yellow)
+# Modular Monolith architecture ![status](https://img.shields.io/badge/status-in%20progress-yellow)
+###...in Egg Restaurant
 
 ![logo](docs/egg.png)
 
