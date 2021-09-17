@@ -16,7 +16,7 @@ Onion Architecture is based on 3 layers:
 
 ![schema](docs/CleanArchitecture.jpg)
 
-[Check also Robert C. Martin's blog post about clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+[Check also Robert C. Martin's blog post about clean architecture!](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
 Domain is in the heart of software and with this approach we can achieve loosely coupling between modules.
 If the business is mature then the domain module will stay unchanged. So when the framework became rusty and the team decide to change technology it will have no impact on business code. The same perfomance/integration changes.
