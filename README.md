@@ -13,6 +13,7 @@ Onion Architecture is based on 3 layers:
 * infrastructure - other systems like DB, JMS, REST API
 
 ![schema](docs/CleanArchitecture.jpg)
+
 [source](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
 Domain is in the heart of software and with this approach we can achieve loosely coupling between modules.
@@ -27,6 +28,7 @@ Event Bus is a subset of [Publish-Subscribe patterns](https://en.wikipedia.org/w
 Event Bus is an architectural pattern it's used in distributed asynchronous architecture to create highly scalable reactive applications. It provides loosely coupling between different components. 
 
 ![schema](docs/publish-subscribe-basics.png)
+
 [Check Microsoft page](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/multi-container-microservice-net-applications/integration-domainEvent-based-microservice-communications)
 
 ## Domain 
