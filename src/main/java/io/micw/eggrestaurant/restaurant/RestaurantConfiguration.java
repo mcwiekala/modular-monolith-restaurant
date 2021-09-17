@@ -38,14 +38,20 @@ class RestaurantConfiguration {
     }
 
     @Bean
-    Waiter waiter(RestaurantEventPublisher restaurantEventPublisher, OrderRepository orderRepository, CustomerRepository customerRepository) {
-        return new Waiter(restaurantEventPublisher, orderRepository, customerRepository);
+    Waiter waiter(RestaurantEventPublisher restaurantEventPublisher, OrderRepository orderRepository, CustomerRepository customerRepository, CustomerNotificationService customerNotificationService) {
+        return new Waiter(restaurantEventPublisher, orderRepository, customerRepository, customerNotificationService);
     }
 
     @Bean
     CustomerRepository customerRepository() {
         return new InMemoryCustomerRepository();
     }
+
+    @Bean
+    CustomerNotificationService customerNotificationService(CustomerEventPublisher customerEventPublisher, CustomerRepository customerRepository) {
+        return new CustomerNotificationService(customerEventPublisher, customerRepository);
+    }
+
 
 //    CommandLineRunner init(){
 //        return args -> {

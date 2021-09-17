@@ -15,14 +15,21 @@ class MealEatenHandlerTest extends Specification {
     @Autowired
     MealEatenHandler mealEatenHandler
 
+    @Autowired
+    DishDeliveredEventRepository dishDeliveredEventRepository
+
     def "test handle"() {
         UUID customerOrderId = UUID.randomUUID()
         given:
         DishDeliveredToSinkEvent deliveredToSinkEvent = new DishDeliveredToSinkEvent(customerOrderId)
+        eventBus.register(mealEatenHandler)
 
         when:
         eventBus.dispatch(deliveredToSinkEvent)
+
         then:
-        true
+        DishDeliveredToSinkEvent result = dishDeliveredEventRepository.getEvent(deliveredToSinkEvent.getEventId())
+        result != null
+        result.getCustomerOrderId() == result.getCustomerOrderId()
     }
 }

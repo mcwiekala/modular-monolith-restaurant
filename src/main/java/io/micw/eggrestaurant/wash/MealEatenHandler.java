@@ -13,10 +13,18 @@ import java.util.Set;
 class MealEatenHandler implements Subscribable<DishDeliveredToSinkEvent> {
 
     public static final Set<Class> SUPPORTED_EVENTS = Sets.newHashSet(DishDeliveredToSinkEvent.class);
+
     DishWasher dishWasher;
+    DishDeliveredEventRepository dishDeliveredEventRepository;
+
+    public MealEatenHandler(DishWasher dishWasher, DishDeliveredEventRepository dishDeliveredEventRepository) {
+        this.dishWasher = dishWasher;
+        this.dishDeliveredEventRepository = dishDeliveredEventRepository;
+    }
 
     @Override
     public void handle(DishDeliveredToSinkEvent domainEvent) {
+        dishDeliveredEventRepository.saveEvent(domainEvent);
         dishWasher.addDishesToSink(new DirtyDishes(domainEvent.getCustomerOrderId()));
     }
 

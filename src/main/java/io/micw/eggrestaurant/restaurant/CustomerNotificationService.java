@@ -1,17 +1,20 @@
 package io.micw.eggrestaurant.restaurant;
 
-import lombok.AllArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
 class CustomerNotificationService {
 
     CustomerEventPublisher customerEventPublisher;
     CustomerRepository customerRepository;
     List<Customer> customerWhoEat = new ArrayList<>();
+
+    public CustomerNotificationService(CustomerEventPublisher customerEventPublisher, CustomerRepository customerRepository) {
+        this.customerEventPublisher = customerEventPublisher;
+        this.customerRepository = customerRepository;
+    }
 
     void addEatingCustomer(Customer customer){
         customerWhoEat.add(customer);

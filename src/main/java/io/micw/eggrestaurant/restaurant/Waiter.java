@@ -13,10 +13,11 @@ class Waiter {
     CustomerRepository customerRepository;
     CustomerNotificationService customerNotificationService;
 
-    public Waiter(RestaurantEventPublisher restaurantEventPublisher, OrderRepository orderRepository, CustomerRepository customerRepository) {
+    public Waiter(RestaurantEventPublisher restaurantEventPublisher, OrderRepository orderRepository, CustomerRepository customerRepository, CustomerNotificationService customerNotificationService) {
         this.restaurantEventPublisher = restaurantEventPublisher;
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
+        this.customerNotificationService = customerNotificationService;
     }
 
     public Order receiveWishFromPerson(Visitor visitor, EggType eggType) {

@@ -11,6 +11,10 @@ class DishWasher {
 
     Sink sink;
 
+    public DishWasher(Sink sink) {
+        this.sink = sink;
+    }
+
     public void addDishesToSink(DirtyDishes dishes) {
         sink.getDishes().add(dishes);
     }
