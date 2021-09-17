@@ -1,5 +1,5 @@
 # Modular Monolith architecture ![status](https://img.shields.io/badge/status-in%20progress-yellow)
-###...in Egg Restaurant
+### ...in Egg Restaurant
 
 ![logo](docs/egg.png)
 
