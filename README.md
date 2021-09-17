@@ -33,7 +33,7 @@ Event Bus is an architectural pattern it's used in distributed asynchronous arch
 
 [Check Microsoft page](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/multi-container-microservice-net-applications/integration-domainEvent-based-microservice-communications)
 
-## Domain 
+## Egg Domain... 
 ![schema](docs/restaurant.png)
 
 The domain is based on restaurant which serves eggs.
@@ -59,5 +59,5 @@ Domain is based on 3 subdomains since egg means something else for different act
 
 ![schema](docs/contexts.png)
 
-#### Inspiration
-Ispiration based on Wade Waldron's talk ["Domain Driven Design and Onion Architecture in Scala"](https://github.com/WadeWaldron/scaladays2016/blob/master/presentation/scaladays2016.md) on Scala Days 2016
+### Inspiration
+Inspiration based on Wade Waldron's talk: ["Domain Driven Design and Onion Architecture in Scala"](https://github.com/WadeWaldron/scaladays2016/blob/master/presentation/scaladays2016.md) on Scala Days 2016
